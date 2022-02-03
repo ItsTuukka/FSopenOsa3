@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const morgan = require('morgan') 
+const cors = require('cors')
 
 morgan.token('person', (req) => {
     return req.method === 'POST'
@@ -9,6 +10,7 @@ morgan.token('person', (req) => {
 })
 
 app.use(express.json())
+app.use(cors())
 app.use(morgan((tokens, req, res) => {
     return [
         tokens.method(req, res),
@@ -87,7 +89,7 @@ let persons = [
       return Math.floor(Math.random()*1000000)
   }
 
-  const PORT = 3001
+  const PORT = process.env.PORT || 3001
   app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`)
   })
