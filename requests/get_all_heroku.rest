@@ -1,0 +1,1 @@
+GET https://phonebook-backendfsopen.herokuapp.com/api/persons
