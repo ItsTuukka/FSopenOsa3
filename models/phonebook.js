@@ -1,14 +1,15 @@
 const mongoose = require('mongoose')
 
+// eslint-disable-next-line no-undef
 const url = process.env.MONGODB_URI
 
 mongoose.connect(url)
-    .then(result => {
+    .then(() => {
         console.log('connected to MongoDB')
-      })
-      .catch((error) => {
+    })
+    .catch((error) => {
         console.log('error connecting to MongoDB:', error.message)
-      })
+    })
 
 const personSchema = new mongoose.Schema({
     name: {
@@ -21,7 +22,7 @@ const personSchema = new mongoose.Schema({
         minlength: 8,
         required: true
     }
-  })
+})
 
 personSchema.set('toJSON', {
     transform: (document, returnedObject) => {
